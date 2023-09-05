@@ -1,0 +1,65 @@
+#+title: 工厂方法
+
+* 简单工厂(Simple Factory)
+
+** UML
+#+begin_src plantuml :file imgs/simple_factory.png
+  skinparam dpi 400
+  abstract Product
+  Product : +use()
+  Factory : +create(String productType)
+  Product <|.. ProductA
+  Product <|.. ProductB
+  Factory o-- ProductA
+  Factory o-- ProductB
+
+#+end_src
+
+#+RESULTS:
+[[file:imgs/simple_factory.png]]
+
+** 代码实现
+
+#+begin_src java
+  public class Excemple {
+      public static abstract class Product {
+          public abstract void use();
+      }
+
+      public static class ProductA extends Product {
+          @Override
+          public void use() {
+              System.out.println("Use Product A");
+          }
+      }
+
+      public static class ProductB extends Product {
+          @Override
+          public void use() {
+              System.out.println("Use Product B");
+          }
+      }
+
+      public static class Factory {
+          public static Product create(String productName) {
+              if ("A".equals(productName)) {
+                  return new ProductA();
+              } else if ("B".equals(productName)) {
+                  return new ProductB();
+              }
+              return null;
+          }
+      }
+
+      public static void main(String[] args) {
+          Product productA = Factory.create("A");
+          Product productB = Factory.create("B");
+          productA.use();
+          productB.use();
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: Use Product A
+: Use Product B

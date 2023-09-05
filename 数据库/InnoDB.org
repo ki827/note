@@ -1,0 +1,20 @@
+#+title: InnoDB
+
+* InnoDB
+
+** ACID模型
+
+| aspect | involvement  | remark      |
+|--------+--------------+-------------|
+| 原子性 | 事务相关     | atomicity   |
+| 一致性 | 崩溃与恢复   | consistency |
+| 隔离性 | 事务相关     | isolation   |
+| 持久性 | 处理硬件层面 | durability  |
+
+*** 原子性
+
+*** 一致性
+
+*** 隔离性
+
+*** 持久性

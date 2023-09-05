@@ -1,0 +1,13 @@
+#+title: UML建模
+
+* 类图
+
+#+begin_src plantuml :file imgs/class-digram.png
+  !theme aws-orange
+  c1 <|-- c2
+#+end_src
+
+#+RESULTS:
+[[file:imgs/class-digram.png]]
+
+

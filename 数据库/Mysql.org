@@ -1,0 +1,6 @@
+#+TITLE: Mysql 笔记
+#+DATE: <2023-06-06 Tue>
+
+* MySql
+
+** Rename table
