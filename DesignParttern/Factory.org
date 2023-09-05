@@ -15,13 +15,13 @@
 
 #+end_src
 
-#+RESULTS:
 [[file:imgs/simple_factory.png]]
+
 
 ** 代码实现
 
 #+begin_src java
-  public class Excemple {
+  public class SimpleFactory {
       public static abstract class Product {
           public abstract void use();
       }
