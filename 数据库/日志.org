@@ -1,0 +1,40 @@
+#+title: Mysql中的日志
+
+* Bin Log
+
+Bin Log 由server层产生，用于记录库中数据的变更，当数据库崩溃时
+用于恢复崩溃前的数据。
+
+* Redo Log
+
+Redo Log 由存储引擎层产生，目前只有Innodb会产生redo log，redo-
+log用于记录库中数据的操作（增，删，改），主要目的是加快数据的操
+作，先使用WAL技术写日志，待到CPU空闲时再写磁盘。
+
+* 两阶段提交
+
+Bin Log 与 Redo Log 二者需要保持一致，不然就会出现很大的问题。
+如何保持一致呢？这就是 **两阶段提交** 策略。如果不采用两阶段
+提交会发生什么问题？
+
+业务场景：将用于状态(status)由0更新为1。
+
+#+begin_src sql
+  update user set `status` = 1 where id = 1;	
+#+end_src
+
+1. 先写bin log，再写redo log： 写入bin log 后数据库故障，使用
+   bin log进行数据恢复，此时status的状态为1。但是因为崩溃前的
+   redo log未更改，目标值应该为0，与目标值不符合。
+   
+2. 先写redo log，再写bin log: 写入redo log后数据库异常重启，此
+   时数据库系统使用redo log 进行数据恢复，所以恢复值是1。但是b-
+   log并未写入，如果我们使用bin log进行数据恢复，那么得到的值将
+   是0，目标值应该是1，与目标值不符合。
+
+鉴于以上两个例子，redo log 与 bin log 应该使用两阶段提交，提交
+redo log 之后，事务处于 **prepared** 状态，提交了bin log之后再
+将事务之余 **commited** 状态，进行 **异常恢复(redo log)** 和
+**数据恢复(bin log)** 时只使用处于commited状态的数据进行恢复。
+
+* Undo Log
