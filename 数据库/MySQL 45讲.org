@@ -1,0 +1,15 @@
+#+TITLE: MySQL 45 讲
+#+DATE: <2024-02-22 Thu> 
+#+AUTHOR: Ki827
+
+* 一条SQL语句如何执行？
+** 1
+*** 2
+**** 4
+
+* 一条更新语句如何执行？
+
+** Redo Log
+
+** Bin Log
+

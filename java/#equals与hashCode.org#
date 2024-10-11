@@ -1,0 +1,15 @@
+#+TITLE: Java equals 与 hashCode方法
+#+DATE: <2024-05-30 Thu>
+#+AUTHOR: 覃荣军
+
+
+
+* Equals方法
+
+* HashCode方法
+
+* 为什么重写equals必须重写hashCode？
+
+* 如何重写equals？
+
+* 如何重写hashCode？

@@ -2,21 +2,23 @@
 
 * 简单工厂(Simple Factory)
 
+一个工厂，按需生成。
+
 ** UML
 #+begin_src plantuml :file imgs/simple_factory.png
-  skinparam dpi 400
+  skinparam dpi 200
   abstract Product
   Product : +use()
   Factory : +create(String productType)
-  Product <|.. ProductA
-  Product <|.. ProductB
+  Product <|-- ProductA
+  Product <|-- ProductB
   Factory o-- ProductA
   Factory o-- ProductB
 
 #+end_src
 
+#+RESULTS:
 [[file:imgs/simple_factory.png]]
-
 
 ** 代码实现
 
@@ -51,6 +53,7 @@
           }
       }
 
+      
       public static void main(String[] args) {
           Product productA = Factory.create("A");
           Product productB = Factory.create("B");
@@ -63,3 +66,9 @@
 #+RESULTS:
 : Use Product A
 : Use Product B
+
+
+** 
+* 工厂方法
+
+* 抽象工厂
